@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function Login() {
-  // const [enteredEmail, setEnteredEmail] = useState("");
-  // const [enteredPassword, setEnteredPassword] = useState("");
+  // const [enteredEmail, setEnteredEmail] = useState('');
+  // const [enteredPassword, setEnteredPassword] = useState('');
   const [enteredValues, setEnteredValues] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const [didEdit, setDidEdit] = useState({
@@ -13,16 +13,12 @@ export default function Login() {
     password: false,
   });
 
-  const emailIsInvalid =
-   didEdit.email && !enteredValues.email.includes("@");
+  const emailIsInvalid = didEdit.email && !enteredValues.email.includes('@');
 
   function handleSubmit(event) {
     event.preventDefault();
+
     console.log(enteredValues);
-    setEnteredValues({
-      email: "",
-      password: "",
-    });
   }
 
   function handleInputChange(identifier, value) {
@@ -30,9 +26,9 @@ export default function Login() {
       ...prevValues,
       [identifier]: value,
     }));
-    setDidEdit(prevEdit => ({
+    setDidEdit((prevEdit) => ({
       ...prevEdit,
-      [identifier]:false,
+      [identifier]: false,
     }));
   }
 
@@ -42,6 +38,14 @@ export default function Login() {
       [identifier]: true,
     }));
   }
+
+  // function handleEmailChange(event) {
+  //   setEnteredEmail(event.target.value);
+  // }
+
+  // function handlePasswordChange(event) {
+  //   setEnteredPassword(event.target.value);
+  // }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -54,12 +58,12 @@ export default function Login() {
             id="email"
             type="email"
             name="email"
-            onBlur={() => handleInputBlur("email")}
-            onChange={(event) => handleInputChange("email", event.target.value)}
+            onBlur={() => handleInputBlur('email')}
+            onChange={(event) => handleInputChange('email', event.target.value)}
             value={enteredValues.email}
           />
           <div className="control-error">
-            {emailIsInvalid && <p>Please enter a valid email address</p>}
+            {emailIsInvalid && <p>Please enter a valid email address.</p>}
           </div>
         </div>
 
@@ -70,7 +74,7 @@ export default function Login() {
             type="password"
             name="password"
             onChange={(event) =>
-              handleInputChange("password", event.target.value)
+              handleInputChange('password', event.target.value)
             }
             value={enteredValues.password}
           />
